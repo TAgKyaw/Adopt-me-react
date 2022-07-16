@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <title>Adopt Me!</title>
+</head>
+<body>
+    <!-- Not Rendered will be blown away, got overridden by React DOM -->
+    <div id="root">Not Rendered</div>
+
+    <!-- React & React Dom Libraries -->
+    <script src="https://unpkg.com/react@16.8.4/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.8.4/umd/react-dom.development.js"></script>
+
+    <script>
+        //Code is going to be here for now
+        // Arrow Function - dank mono fonts give arrow design / FiraCode is free
+        // App is component container or a composite component
+        const App = () => {
+
+            // creating a html element from react called a component.
+            return React.createElement(
+                "div",
+                {
+                    id: "something important"
+                },
+                React.createElement("h1",{}, "Adopt Me!")
+                // createElement("elementName",{element_attributes},"[array of children elements] OR child1, child2")
+            );
+        };
+        // Rendering components from App container into the document
+        ReactDOM.render(React.createElement(App), document.getElementById("root"));
+    </script>
+</body>
+</html>
