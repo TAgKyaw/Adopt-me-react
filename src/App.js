@@ -1,3 +1,5 @@
+import React from "react";
+import { render } from "react-dom";
 const Pet = ({ name, animal, breed }) => {
   // this is a stamp/ a component
   // props can be replaced with destructuring variables so we don't need to call them with props.name, etc.
@@ -34,4 +36,4 @@ const App = () => {
   );
 };
 // Rendering components from App container into the document
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
+render(React.createElement(App), document.getElementById("root"));
