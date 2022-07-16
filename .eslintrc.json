@@ -1,5 +1,9 @@
 {
   "extends": ["eslint: recommended", "prettier", "prettier/react"],
+  "rules": {
+    "react/prop-types": 0,
+    "no-console": 1
+  },
   "plugins": [],
   "parserOptions": {
     "ecmaVersion": 2018,
@@ -12,5 +16,10 @@
     "es6": true,
     "browser": true,
     "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

@@ -1,15 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-const Pet = ({ name, animal, breed }) => {
-  // this is a stamp/ a component
-  // props can be replaced with destructuring variables so we don't need to call them with props.name, etc.
-  // const {name,animal,breed} = props;
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, name),
-    React.createElement("h2", {}, animal),
-    React.createElement("h2", {}, breed),
-  ]);
-};
+import Pet from "./Pet";
 
 const App = () => {
   // creating a html element from react called a component.
