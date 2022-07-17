@@ -9,7 +9,7 @@ Instead, use {createRoot} from 'react-dom/client';
 
 Syntax --
 const root = createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(Component);
 
 ## Hooks
 
