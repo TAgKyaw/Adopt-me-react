@@ -1,7 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // New API Library - if haven't installed, parcel will fetch it for us
-import { ANIMALS } from "@frontendmasters/pet";
+import pet, { ANIMALS } from "@frontendmasters/pet";
 import useDropdown from "./useDropdown";
 
 const SearchParams = () => {
@@ -12,7 +12,19 @@ const SearchParams = () => {
   //   const [breed, setBreed] = useState("Choose");
   const [breeds, setBreeds] = useState([]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
-  const [breed, breedDropdown] = useDropdown("Breed", "", breeds);
+  const [breed, BreedDropdown] = useDropdown("breed", "", breeds);
+
+  // useEffect runs only after the rendering happened for the first time
+  useEffect(() => {
+    // pet.breeds("dog").then(console.log, console.error);
+    setBreeds([]);
+    setBreed("");
+
+    pet.breeds(animal).then(({breeds}) => {
+      const breedString = breeds.map(({name}) => name);
+      setBreeds(breedString);
+    }, console.error);
+  });
 
   return (
     // We use className instead of class because class is reserved in JavaScript. Cannot read class as an attribute.
@@ -29,7 +41,7 @@ const SearchParams = () => {
           />
         </label>
         <AnimalDropdown />
-        <breedDropdown />
+        <BreedDropdown />
         <button type="submit">Submit</button>
       </form>
     </div>
