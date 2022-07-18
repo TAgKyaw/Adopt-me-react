@@ -14,17 +14,17 @@ const SearchParams = () => {
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
   const [breed, BreedDropdown] = useDropdown("breed", "", breeds);
 
-  // useEffect runs only after the rendering happened for the first time
+  // useEffect runs only after the rendering happened for the first time and maybe also run when things change.
   useEffect(() => {
     // pet.breeds("dog").then(console.log, console.error);
     setBreeds([]);
-    setBreed("");
+    // setBreed("");
 
-    pet.breeds(animal).then(({breeds}) => {
-      const breedString = breeds.map(({name}) => name);
+    pet.breeds(animal).then(({ breeds }) => {
+      const breedString = breeds.map(({ name }) => name);
       setBreeds(breedString);
     }, console.error);
-  });
+  }, [animal, breed, setBreeds]); //the last array are the dependencies that this useEffect refers to; this will run when they change
 
   return (
     // We use className instead of class because class is reserved in JavaScript. Cannot read class as an attribute.
