@@ -12,19 +12,20 @@ const SearchParams = () => {
   //   const [breed, setBreed] = useState("Choose");
   const [breeds, setBreeds] = useState([]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
-  const [breed, BreedDropdown] = useDropdown("breed", "", breeds);
+  const [breed, BreedDropdown, setBreed] = useDropdown("breed", "", breeds);
 
-  // useEffect runs only after the rendering happened for the first time and maybe also run when things change.
+  // useEffect runs only after the first render and maybe also run when things change according to dependencies.
   useEffect(() => {
     // pet.breeds("dog").then(console.log, console.error);
     setBreeds([]);
-    // setBreed("");
+    setBreed(""); // not declared so commented out
 
-    pet.breeds(animal).then(({ breeds }) => {
-      const breedString = breeds.map(({ name }) => name);
+    pet.breeds(animal).then(({ breeds: apiBreeds }) => {
+      const breedString = apiBreeds.map(({ name }) => name);
       setBreeds(breedString);
     }, console.error);
-  }, [animal, breed, setBreeds]); //the last array are the dependencies that this useEffect refers to; this will run when they change
+  }, [animal, setBreed, setBreeds]); //the last array are the dependencies that this useEffect refers to; this will run when they change
+  //to run Effect only once, put an empty array for useEffect dependencies, noly very recommended
 
   return (
     // We use className instead of class because class is reserved in JavaScript. Cannot read class as an attribute.
